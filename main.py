@@ -1033,10 +1033,6 @@ def executeSqlQuery(cur, goldQuery, predictedQuery):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    #gold query:
-    #SELECT s.sid, s.title FROM songs s, artists a, perform p WHERE a.aid = p.aid AND (a.nationality = 'Canada' OR a.nationality = 'Canadian') AND s.sid = p.sid;
-    #predicted query:
-    #select s.sid, s.title from songs s, artists a, perform p where s.sid = p.sid and a.aid = p.aid and a.nationality = 'Canada' or a.nationality = 'Canadian'
     goldQuery = "SELECT s.sid, s.title FROM songs as s, artists as a, perform as p WHERE a.aid = p.aid AND (a.nationality = 'Canada' OR a.nationality = 'Canadian') AND s.sid = p.sid"
     predictedQuery = "select s.sid, s.title from songs as s, artists as a, perform as p where s.sid = p.sid and a.aid = p.aid and a.nationality = 'Canada' or a.nationality = 'Canadian'"
     con = sqlite3.connect("assignment02db.db")
