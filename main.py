@@ -972,25 +972,27 @@ def build_foreign_key_map_from_json(table):
 #table order not considered
 def executeSqlQuery(cur, goldQuery, predictedQuery):
     # gold query
+    print("Gold Query: " + goldQuery)
+    print("Predicted Query: " + predictedQuery)
     cur.execute(goldQuery)
     result1 = cur.fetchall()
     cur.execute(predictedQuery)
     result2 = cur.fetchall()
     equivalentCount = 0
     total = len(result1)
-    print(result1)
-    print(result2)
+   # print(result1)
+    #print(result2)
     accuracy = 0
     if len(result1) >= len(result2):
         for res in result2:
             if res in result1:
-                print(type(res))
+                #print(type(res))
                 equivalentCount += 1
     else:
         total = len(result2)
         for res in result1:
             if res in result2:
-                print(type(res))
+                #print(type(res))
                 equivalentCount += 1
 
     accuracy = equivalentCount * 100 / total
@@ -999,7 +1001,7 @@ def executeSqlQuery(cur, goldQuery, predictedQuery):
     db="assignment02db.db"
     schema = Schema(get_schema(db))
     g_sql = get_sql(schema, goldQuery)
-    print("gsql : " + str(g_sql))
+    #print("gsql : " + str(g_sql))
     try:
         p_sql = get_sql(schema, predictedQuery)
     except:
@@ -1022,7 +1024,7 @@ def executeSqlQuery(cur, goldQuery, predictedQuery):
             "union": None,
             "where": []
         }
-    print("psql :" + str(p_sql))
+  #  print("psql :" + str(p_sql))
     evaluator = Evaluator()
     exact_score = evaluator.eval_exact_match(g_sql, p_sql)
     print("exact score: " + str(exact_score))
